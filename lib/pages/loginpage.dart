@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'registerpage.dart';
+import 'package:testflutter/widgets/widget_button.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -44,27 +44,31 @@ class _LoginPageState extends State<LoginPage> {
               decoration: const InputDecoration(labelText: 'Password'),
               obscureText: true,
             ),
-            const SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () {
-                if (_usernameController.text == 'bayu' &&
-                    _passwordController.text == 'sasmita') {
-                  _showSnackbar('Login Berhasil', Colors.green);
-                } else {
-                  _showSnackbar('Login Gagal', Colors.red);
-                }
-              },
-              child: const Text('Login'),
+            Container(
+              margin: const EdgeInsets.only(top: 20, bottom: 20),
+              child: Center(
+                child: CustomButton(
+                  text: 'Login',
+                  textcolor: Colors.white,
+                  onPressed: () {
+                    // Handle login logic here
+                    _showSnackbar('Login button pressed', Colors.green);
+                  },
+                ),
+              ),
             ),
-            const SizedBox(height: 12),
-            TextButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const RegisterPage()),
-                );
-              },
-              child: const Text('Belum punya akun? Register'),
+            Container(
+              margin: const EdgeInsets.only(top: 20, bottom: 20),
+              child: Center(
+                child: CustomButton(
+                  text: 'Register',
+                  textcolor: Colors.white,
+                  onPressed: () {
+                    // Navigate to Register Page
+                    Navigator.pushNamed(context, '/register');
+                  },
+                ),
+              ),
             ),
           ],
         ),
