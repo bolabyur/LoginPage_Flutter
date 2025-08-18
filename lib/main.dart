@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:testflutter/pages/registerpage.dart';
-import 'pages/loginpage.dart';
+import 'package:testflutter/routes/pages.dart';
+import 'package:testflutter/routes/routes.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,17 +13,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      title: 'Campaign App',
-      initialRoute: '/register',
-      routes: {
-        '/login': (context) => const LoginPage(),
-        '/register': (context) => const RegisterPage(),
-      },
+      title: 'Football App',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.teal), // ganti warna tema
         useMaterial3: true,
       ),
-      home: Container(),
+      initialRoute: AppRoutes.loginPage,
+      getPages: AppPages.pages,
     );
   }
 }
