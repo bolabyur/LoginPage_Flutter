@@ -3,26 +3,45 @@ import '../models/player.dart';
 
 class PlayerTile extends StatelessWidget {
   final Player player;
-  final VoidCallback? onTap;
+  final VoidCallback onEdit;
+  final VoidCallback onDelete;
 
-  const PlayerTile({super.key, required this.player, this.onTap});
+  const PlayerTile({
+    super.key,
+    required this.player,
+    required this.onEdit,
+    required this.onDelete,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Card(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(12),
-        side: BorderSide(color: Colors.grey.shade300, width: 1), // border
-      ),
-      margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+      margin: const EdgeInsets.only(bottom: 12),
       child: ListTile(
-        onTap: onTap,
         leading: CircleAvatar(
-          backgroundImage: NetworkImage(player.imageUrl),
+          radius: 28,
+          backgroundColor: Colors.grey[200],
+          backgroundImage: NetworkImage(player.imageUrl), // ✅ langsung pakai URL
         ),
-        title: Text(player.name),
-        subtitle: Text(player.position),
-        trailing: const Icon(Icons.arrow_forward_ios, size: 16),
+        title: Text(
+          player.name,
+          style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+        ),
+        subtitle: Text("Position: ${player.position}"),
+        trailing: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            IconButton(
+              icon: const Icon(Icons.edit, color: Colors.blue),
+              onPressed: onEdit,
+            ),
+            IconButton(
+              icon: const Icon(Icons.delete, color: Colors.red),
+              onPressed: onDelete,
+            ),
+          ],
+        ),
       ),
     );
   }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:testflutter/routes/routes.dart';
+import '../routes/routes.dart';
 import '../widgets/CustomButton.dart';
 import '../widgets/MyTextField.dart';
 
@@ -47,38 +47,21 @@ class RegisterPage extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 20),
-              MyTextField(
-                textEditingController: nameController,
-                labelText: 'Nama',
-              ),
+              MyTextField(textEditingController: nameController, labelText: 'Nama'),
               const SizedBox(height: 12),
-              MyTextField(
-                textEditingController: emailController,
-                labelText: 'Email / Username',
-              ),
+              MyTextField(textEditingController: emailController, labelText: 'Email / Username'),
               const SizedBox(height: 12),
-              MyTextField(
-                textEditingController: passwordController,
-                labelText: 'Password',
-              ),
+              MyTextField(textEditingController: passwordController, labelText: 'Password'),
               const SizedBox(height: 12),
               Obx(
                 () => DropdownButtonFormField<String>(
                   decoration: const InputDecoration(labelText: 'Jenis Kelamin'),
                   value: gender.value.isEmpty ? null : gender.value,
                   items: const [
-                    DropdownMenuItem(
-                      value: 'Laki-laki',
-                      child: Text('Laki-laki'),
-                    ),
-                    DropdownMenuItem(
-                      value: 'Perempuan',
-                      child: Text('Perempuan'),
-                    ),
+                    DropdownMenuItem(value: 'Laki-laki', child: Text('Laki-laki')),
+                    DropdownMenuItem(value: 'Perempuan', child: Text('Perempuan')),
                   ],
-                  onChanged: (value) {
-                    gender.value = value ?? '';
-                  },
+                  onChanged: (value) => gender.value = value ?? '',
                 ),
               ),
               const SizedBox(height: 12),
@@ -97,9 +80,7 @@ class RegisterPage extends StatelessWidget {
                       firstDate: DateTime(1900),
                       lastDate: DateTime.now(),
                     );
-                    if (picked != null) {
-                      birthDate.value = picked;
-                    }
+                    if (picked != null) birthDate.value = picked;
                   },
                 ),
               ),
@@ -114,17 +95,10 @@ class RegisterPage extends StatelessWidget {
                       passwordController.text.isEmpty ||
                       gender.value.isEmpty ||
                       birthDate.value == null) {
-                    showSnack(
-                      context,
-                      'Harap lengkapi semua field',
-                      Colors.red,
-                    );
+                    showSnack(context, 'Harap lengkapi semua field', Colors.red);
                   } else {
                     showSnack(context, 'Register Berhasil', Colors.green);
-                    // pindah ke LoginPage setelah berhasil register
-                    Get.offNamed(AppRoutes.loginPage);
-                    // atau langsung ke CalculatorPage jika mau
-                    // Get.offNamed(AppRoutes.calculator);
+                    Get.offNamed(AppRoutes.homePage); // langsung ke HomePage
                   }
                 },
               ),

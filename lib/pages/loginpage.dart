@@ -68,7 +68,7 @@ class LoginPage extends StatelessWidget {
                   }
 
                   if (username == 'admin' && password == 'admin') {
-                    Get.offNamed(AppRoutes.calculator);
+                    Get.offNamed(AppRoutes.homePage);
                   } else {
                     ScaffoldMessenger.of(context).showSnackBar(
                       const SnackBar(
