@@ -23,7 +23,7 @@ class RegisterPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Register'),
+        title: const Text('Register', style: TextStyle(fontFamily: 'Roboto', fontWeight: FontWeight.bold, color: Colors.white)),
         backgroundColor: Colors.green,
       ),
       body: SingleChildScrollView(
@@ -95,7 +95,7 @@ class RegisterPage extends StatelessWidget {
                       passwordController.text.isEmpty ||
                       gender.value.isEmpty ||
                       birthDate.value == null) {
-                    showSnack(context, 'Harap lengkapi semua field', Colors.red);
+                    showSnack(context, 'Harap diisi semua', Colors.red);
                   } else {
                     showSnack(context, 'Register Berhasil', Colors.green);
                     Get.offNamed(AppRoutes.homePage); // langsung ke HomePage

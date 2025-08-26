@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../controllers/football_controller.dart';
 import '../routes/routes.dart';
-import '../models/player.dart';   // ✅ import Player model
+import '../models/player.dart'; // ✅ import Player model
 import '../widgets/player_tile.dart'; // ✅ pakai PlayerTile
 
 class FootballPage extends StatelessWidget {
@@ -14,7 +14,14 @@ class FootballPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Football Players"),
+        title: const Text(
+          "Football Players",
+          style: TextStyle(
+            fontFamily: 'Roboto',
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
+        ),
         centerTitle: true,
         backgroundColor: Colors.blue,
       ),
