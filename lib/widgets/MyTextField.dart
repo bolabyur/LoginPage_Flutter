@@ -4,12 +4,14 @@ class MyTextField extends StatelessWidget {
   final TextEditingController textEditingController;
   final String labelText;
   final TextInputType keyboardType;
+  final IconData? icon; // <- optional icon
 
   const MyTextField({
     super.key,
     required this.textEditingController,
     required this.labelText,
     this.keyboardType = TextInputType.text, // default teks
+    this.icon,
   });
 
   @override
@@ -22,6 +24,7 @@ class MyTextField extends StatelessWidget {
         decoration: InputDecoration(
           labelText: labelText,
           labelStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+          prefixIcon: icon != null ? Icon(icon, color: Colors.blue) : null, // ikon jika ada
           contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(12),

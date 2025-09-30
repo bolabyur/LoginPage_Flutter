@@ -1,74 +1,57 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../controllers/football_controller.dart';
-import '../models/player.dart';
-import '../widgets/CustomButton.dart';
+import '../controllers/football_edit_controller.dart';
 import '../widgets/MyTextField.dart';
 
-class EditPlayerPage extends StatelessWidget {
-  final FootballController controller = Get.find();
+class FootballEditPage extends StatelessWidget {
+  FootballEditPage({super.key});
 
-  EditPlayerPage({super.key});
+  final editController = Get.find<FootballEditController>();
 
   @override
   Widget build(BuildContext context) {
-    final int index = Get.arguments as int;
-    final player = controller.players[index];
-    final nameController = TextEditingController(text: player.name);
-    final positionController = TextEditingController(text: player.position);
-    final imageUrlController = TextEditingController(text: player.imageUrl);
-
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          "Edit Player",
-          style: TextStyle(
-            fontFamily: 'Roboto',
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
-          ),
-        ),
-        centerTitle: true,
-        backgroundColor: Colors.blue,
+      appBar: AppBar(title: Text("Edit Player"),
+      backgroundColor: Colors.blue,
       ),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16),
-        child: Transform.scale(
-          scale: 0.85,
-          alignment: Alignment.topCenter,
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Form(
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               MyTextField(
-                textEditingController: nameController,
+                textEditingController: editController.Name,
                 labelText: "Name",
+                icon: Icons.person,
               ),
-              const SizedBox(height: 12),
+
+              SizedBox(height: 10),
               MyTextField(
-                textEditingController: positionController,
+                textEditingController: editController.Position,
                 labelText: "Position",
+                icon: Icons.sports_soccer,
               ),
-              const SizedBox(height: 12),
+
+              SizedBox(height: 10),
               MyTextField(
-                textEditingController: imageUrlController,
-                labelText: "Image URL",
+                textEditingController: editController.NomorPunggung,
+                labelText: "Nomor Punggung",
+                icon: Icons.confirmation_number,
               ),
-              const SizedBox(height: 20),
-              CustomButton(
-                text: "Save Changes",
-                textColor: Colors.white,
-                background: Colors.blue,
-                onPressed: () {
-                  controller.updatePlayer(
-                    index,
-                    Player(
-                      name: nameController.text,
-                      position: positionController.text,
-                      imageUrl: imageUrlController.text,
-                    ),
-                  );
-                  Get.back();
-                },
+
+              SizedBox(height: 10),
+              MyTextField(
+                textEditingController: editController.ImageUrl,
+                labelText: "Image URL",
+                keyboardType: TextInputType.url,
+                icon: Icons.image,
+              ),
+
+              SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: editController.save,
+                child: Text("Save"),
               ),
             ],
           ),

@@ -1,20 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../routes/routes.dart';
+import 'package:testflutter/routes/routes.dart';
 import '../widgets/CustomButton.dart';
 import '../widgets/MyTextField.dart';
+import '../controllers/logincontroller.dart';
 
 class LoginPage extends StatelessWidget {
   LoginPage({super.key});
 
-  final TextEditingController usernameController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
+  final controller = Get.find<LoginController>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey[100],
       appBar: AppBar(
-        title: const Text('Login',  style: TextStyle(fontFamily: 'Roboto', fontWeight: FontWeight.bold, color: Colors.white)),
+        title: const Text(
+          'Login',
+          style: TextStyle(
+            fontFamily: 'Roboto',
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
+        ),
         centerTitle: true,
         backgroundColor: Colors.blue,
       ),
@@ -40,12 +48,12 @@ class LoginPage extends StatelessWidget {
               ),
               const SizedBox(height: 20),
               MyTextField(
-                textEditingController: usernameController,
+                textEditingController: controller.usernameController,
                 labelText: 'Username',
               ),
               const SizedBox(height: 12),
               MyTextField(
-                textEditingController: passwordController,
+                textEditingController: controller.passwordController,
                 labelText: 'Password',
               ),
               const SizedBox(height: 20),
@@ -54,38 +62,16 @@ class LoginPage extends StatelessWidget {
                 textColor: Colors.white,
                 background: Colors.blue,
                 onPressed: () {
-                  final username = usernameController.text.trim();
-                  final password = passwordController.text.trim();
-
-                  if (username.isEmpty || password.isEmpty) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        content: Text('Username dan Password harus diisi'),
-                        backgroundColor: Colors.red,
-                      ),
-                    );
-                    return;
-                  }
-
-                  if (username == 'admin' && password == 'admin') {
-                    Get.offNamed(AppRoutes.homePage);
-                  } else {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        content: Text('Username atau Password salah'),
-                        backgroundColor: Colors.red,
-                      ),
-                    );
-                  }
+                  controller.login();
                 },
               ),
-              const SizedBox(height: 12),
+              const SizedBox(height: 20),
               CustomButton(
                 text: 'Register',
                 textColor: Colors.white,
                 background: Colors.green,
                 onPressed: () {
-                  Get.toNamed(AppRoutes.registerPage);
+                  Get.offAllNamed(AppRoutes.registerPage);
                 },
               ),
             ],

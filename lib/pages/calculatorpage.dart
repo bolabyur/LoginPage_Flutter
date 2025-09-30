@@ -6,16 +6,12 @@ import '../widgets/MyTextField.dart';
 
 class CalculatorPage extends StatelessWidget {
   CalculatorPage({super.key});
-  final CalculatorController controller = Get.put(CalculatorController());
+  final CalculatorController controller = Get.find<CalculatorController>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("My Calculator", style: TextStyle(fontFamily: 'Roboto', fontWeight: FontWeight.bold, color: Colors.white)),
-        centerTitle: true,
-        backgroundColor: Colors.blue,
-      ),
+      backgroundColor: Colors.grey[100],
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
         child: Transform.scale(

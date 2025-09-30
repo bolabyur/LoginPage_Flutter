@@ -22,8 +22,16 @@ class RegisterPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey[100],
       appBar: AppBar(
-        title: const Text('Register', style: TextStyle(fontFamily: 'Roboto', fontWeight: FontWeight.bold, color: Colors.white)),
+        title: const Text(
+          'Register',
+          style: TextStyle(
+            fontFamily: 'Roboto',
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
+        ),
         backgroundColor: Colors.green,
       ),
       body: SingleChildScrollView(
@@ -47,19 +55,34 @@ class RegisterPage extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 20),
-              MyTextField(textEditingController: nameController, labelText: 'Nama'),
+              MyTextField(
+                textEditingController: nameController,
+                labelText: 'Nama' ,
+              ),
               const SizedBox(height: 12),
-              MyTextField(textEditingController: emailController, labelText: 'Email / Username'),
+              MyTextField(
+                textEditingController: emailController,
+                labelText: 'Email / Username',
+              ),
               const SizedBox(height: 12),
-              MyTextField(textEditingController: passwordController, labelText: 'Password'),
+              MyTextField(
+                textEditingController: passwordController,
+                labelText: 'Password',
+              ),
               const SizedBox(height: 12),
               Obx(
                 () => DropdownButtonFormField<String>(
                   decoration: const InputDecoration(labelText: 'Jenis Kelamin'),
                   value: gender.value.isEmpty ? null : gender.value,
                   items: const [
-                    DropdownMenuItem(value: 'Laki-laki', child: Text('Laki-laki')),
-                    DropdownMenuItem(value: 'Perempuan', child: Text('Perempuan')),
+                    DropdownMenuItem(
+                      value: 'Laki-laki',
+                      child: Text('Laki-laki'),
+                    ),
+                    DropdownMenuItem(
+                      value: 'Perempuan',
+                      child: Text('Perempuan'),
+                    ),
                   ],
                   onChanged: (value) => gender.value = value ?? '',
                 ),
@@ -98,7 +121,7 @@ class RegisterPage extends StatelessWidget {
                     showSnack(context, 'Harap diisi semua', Colors.red);
                   } else {
                     showSnack(context, 'Register Berhasil', Colors.green);
-                    Get.offNamed(AppRoutes.homePage); // langsung ke HomePage
+                    Get.offNamed(AppRoutes.loginPage); // langsung ke LoginPage
                   }
                 },
               ),

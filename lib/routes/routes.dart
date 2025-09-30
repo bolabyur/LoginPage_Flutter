@@ -6,4 +6,7 @@ class AppRoutes {
   static const footballEditPage = '/footballEditPage';
   static const addPlayerPage = '/addPlayerPage';
   static const homePage = '/home';
+  static const splashScreenPage = '/splashscreen';
+  static const profilePage = '/profilepage';
+  static const contactPage = '/contactpage';
 }

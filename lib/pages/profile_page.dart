@@ -1,113 +1,100 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/state_manager.dart';
-import 'package:testflutter/routes/routes.dart';
+import 'package:testflutter/controllers/logincontroller.dart';
+import 'package:testflutter/widgets/Row.dart';
 
 class ProfilePage extends StatelessWidget {
-  const ProfilePage({super.key});
+  ProfilePage({super.key});
+
+  final LoginController loginController = Get.find<LoginController>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[100], // ✅ background lembut
-      appBar: AppBar(
-        title: const Text(
-          'Profile',
-          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
-        ),
-        centerTitle: true,
-        backgroundColor: Colors.teal,
-        elevation: 0,
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(20),
-        child: Column(
-          children: [
-            // Avatar + Nama
-            Column(
-              children: const [
+        backgroundColor: Colors.grey[100],
+        body: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.all(20),
+            child: Column(
+              children: [
+                // Avatar + Nama
                 CircleAvatar(
                   radius: 55,
                   backgroundImage: AssetImage(
-                      'assets/images/Photo_Bayu Satria Susanto.jpg'),
+                    'assets/images/Photo_Bayu Satria Susanto.jpg',
+                  ),
                 ),
-                SizedBox(height: 15),
-                Text(
+                const SizedBox(height: 16),
+                const Text(
                   'Bayu Satria Susanto',
                   style: TextStyle(
-                    fontSize: 20,
+                    fontSize: 22,
                     fontWeight: FontWeight.bold,
                     color: Colors.black87,
                   ),
                 ),
-                SizedBox(height: 5),
-                Text(
+                const SizedBox(height: 4),
+                const Text(
                   'bayu@example.com',
                   style: TextStyle(fontSize: 16, color: Colors.grey),
                 ),
-              ],
-            ),
-            const SizedBox(height: 30),
+                const SizedBox(height: 30),
 
-            // Card Info
-            Card(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(16),
-              ),
-              elevation: 3,
-              child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
-                    Text(
-                      "Profile Information",
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.teal,
-                      ),
-                    ),
-                    Divider(height: 20, thickness: 1),
-                    SizedBox(height: 8),
-                    Text("📍 Alamat: Jakarta, Indonesia",
-                        style: TextStyle(fontSize: 15)),
-                    SizedBox(height: 10),
-                    Text("📱 Phone: +62 812-3456-7890",
-                        style: TextStyle(fontSize: 15)),
-                    SizedBox(height: 10),
-                    Text("🎓 Status: Pelajar SMK",
-                        style: TextStyle(fontSize: 15)),
-                  ],
-                ),
-              ),
-            ),
-
-            const Spacer(),
-
-            // Tombol Logout
-            SizedBox(
-              width: double.infinity,
-              child: ElevatedButton(
-                onPressed: () {
-                  Get.offNamed(AppRoutes.loginPage);
-                  
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.teal,
-                  padding: const EdgeInsets.symmetric(vertical: 14),
+                // Card Info
+                Card(
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
+                    borderRadius: BorderRadius.circular(14),
+                  ),
+                  elevation: 2,
+                  child: Padding(
+                    padding: const EdgeInsets.all(16),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: const [
+                        Text(
+                        "Profile Information",
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.teal,
+                        ),
+                      ),
+                      SizedBox(height: 12),
+                      InfoRow(icon: "📍", label: "Alamat", value: "Jakarta, Indonesia"),
+                      SizedBox(height: 8),
+                      InfoRow(icon: "📱", label: "Phone", value: "+62 812-3456-7890"),
+                      SizedBox(height: 8),
+                      InfoRow(icon: "🎓", label: "Status", value: "Pelajar SMK"),
+                    ],
                   ),
                 ),
-                child: const Text(
-                  "Logout",
-                  style: TextStyle(fontSize: 16, color: Colors.white),
+              ),
+
+              const Spacer(),
+
+              // Tombol Logout
+              SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                  onPressed: () {
+                    loginController.logout();
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.red,
+                    foregroundColor: Colors.white,
+                    padding: const EdgeInsets.symmetric(vertical: 16),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                  ),
+                  child: const Text(
+                    "Logout",
+                    style: TextStyle(fontSize: 18, color: Colors.white),
+                  ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

@@ -1,15 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:testflutter/pages/calculatorpage.dart';
+import 'package:testflutter/pages/contact_page.dart';
 import 'package:testflutter/pages/football_page.dart';
 import 'package:testflutter/pages/profile_page.dart';
-
-class HomeController extends GetxController {
-  var selectedIndex = 0.obs;
-  void changeTab(int index) {
-    selectedIndex.value = index;
-  }
-}
+import '../controllers/home_controller.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({super.key});
@@ -18,17 +13,32 @@ class HomePage extends StatelessWidget {
   final List<Widget> pages = [
     CalculatorPage(),
     FootballPage(),
-    const ProfilePage(),
+    ProfilePage(),
+    ContactPage(),
   ];
+
+  final List<String> titles = ["Calculator", "Football", "Profile", "Contact"];
 
   @override
   Widget build(BuildContext context) {
     return Obx(
       () => Scaffold(
-        body: pages[controller.selectedIndex.value],
+        appBar: AppBar(
+          title: Text(
+            titles[controller.selectedIndex.value],
+            style: const TextStyle(color: Colors.white),
+          ),
+          backgroundColor: Colors.blue,
+        ),
+        body: IndexedStack(
+          index: controller.selectedIndex.value,
+          children: pages,
+        ),
         bottomNavigationBar: BottomNavigationBar(
           currentIndex: controller.selectedIndex.value,
-          onTap: controller.changeTab,
+          onTap: (index) => controller.changeIndex(index),
+          selectedItemColor: Colors.blue,
+          unselectedItemColor: Colors.grey,
           items: const [
             BottomNavigationBarItem(
               icon: Icon(Icons.calculate),
@@ -38,7 +48,14 @@ class HomePage extends StatelessWidget {
               icon: Icon(Icons.sports_soccer),
               label: "Football",
             ),
-            BottomNavigationBarItem(icon: Icon(Icons.person), label: "Profile"),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.contact_page),
+              label: "Contact",
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.person),
+              label: "Profile",
+            ),
           ],
         ),
       ),

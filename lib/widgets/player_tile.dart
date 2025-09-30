@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../models/player.dart';
 
 class PlayerTile extends StatelessWidget {
-  final Player player;
+  final FootballModel player;
   final VoidCallback onEdit;
   final VoidCallback onDelete;
 
@@ -22,7 +22,7 @@ class PlayerTile extends StatelessWidget {
         leading: CircleAvatar(
           radius: 28,
           backgroundColor: Colors.grey[200],
-          backgroundImage: NetworkImage(player.imageUrl), // ✅ langsung pakai URL
+          backgroundImage: NetworkImage(player.image), // ✅ langsung pakai URL
         ),
         title: Text(
           player.name,
