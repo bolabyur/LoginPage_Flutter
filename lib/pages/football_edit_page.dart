@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../controllers/football_edit_controller.dart';
-import '../widgets/MyTextField.dart';
+import '../widgets/mytextfield.dart';
 
 class FootballEditPage extends StatelessWidget {
   FootballEditPage({super.key});
@@ -11,8 +11,9 @@ class FootballEditPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Edit Player"),
-      backgroundColor: Colors.blue,
+      appBar: AppBar(
+        title: Text("Edit Player"),
+        backgroundColor: Colors.blue,
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -21,33 +22,29 @@ class FootballEditPage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               MyTextField(
-                textEditingController: editController.Name,
+                textEditingController: editController.name,
                 labelText: "Name",
                 icon: Icons.person,
               ),
-
               SizedBox(height: 10),
               MyTextField(
-                textEditingController: editController.Position,
+                textEditingController: editController.position,
                 labelText: "Position",
                 icon: Icons.sports_soccer,
               ),
-
               SizedBox(height: 10),
               MyTextField(
-                textEditingController: editController.NomorPunggung,
+                textEditingController: editController.nomorpunggung,
                 labelText: "Nomor Punggung",
                 icon: Icons.confirmation_number,
               ),
-
               SizedBox(height: 10),
               MyTextField(
-                textEditingController: editController.ImageUrl,
+                textEditingController: editController.imageUrl,
                 labelText: "Image URL",
                 keyboardType: TextInputType.url,
                 icon: Icons.image,
               ),
-
               SizedBox(height: 20),
               ElevatedButton(
                 onPressed: editController.save,

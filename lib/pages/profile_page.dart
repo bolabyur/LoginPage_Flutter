@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:testflutter/controllers/logincontroller.dart';
-import 'package:testflutter/widgets/Row.dart';
+import 'package:testflutter/widgets/row.dart';
 
 class ProfilePage extends StatelessWidget {
   ProfilePage({super.key});
@@ -56,7 +56,7 @@ class ProfilePage extends StatelessWidget {
                         style: TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
-                          color: Colors.teal,
+                          color: Colors.grey,
                         ),
                       ),
                       SizedBox(height: 12),

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../routes/routes.dart';
 import '../widgets/CustomButton.dart';
-import '../widgets/MyTextField.dart';
+import '../widgets/mytextfield.dart';
 
 class RegisterPage extends StatelessWidget {
   RegisterPage({super.key});
@@ -73,7 +73,7 @@ class RegisterPage extends StatelessWidget {
               Obx(
                 () => DropdownButtonFormField<String>(
                   decoration: const InputDecoration(labelText: 'Jenis Kelamin'),
-                  value: gender.value.isEmpty ? null : gender.value,
+                  initialValue: gender.value.isEmpty ? null : gender.value,
                   items: const [
                     DropdownMenuItem(
                       value: 'Laki-laki',

@@ -1,46 +1,56 @@
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../models/player.dart';
-import 'football_controller.dart';
+import 'package:testflutter/models/player.dart';
 
 class FootballEditController extends GetxController {
+  // Text controllers
+  final TextEditingController name = TextEditingController();
+  final TextEditingController position = TextEditingController();
+  final TextEditingController nomorpunggung = TextEditingController();
+  final TextEditingController imageUrl = TextEditingController();
 
-  late int index;
-  final playerController = Get.find<FootballController>();
+  // Data pemain yang sedang diedit
+  FootballModel? currentPlayer;
 
-  final Name = TextEditingController();
-  final Position = TextEditingController();
-  final NomorPunggung= TextEditingController();
-  final ImageUrl = TextEditingController();
-
-  @override
-  void onInit() {
-    super.onInit();
-    index = Get.arguments as int;
-
-    final player = playerController.players[index];
-    Name.text = player.name;
-    Position.text = player.position;
-    NomorPunggung.text = player.nomorPunggung.toString();
-    ImageUrl.text = player.image;
+  /// 🔁 Load data dari player yang dipilih ke form edit
+  void loadPlayer(FootballModel player) {
+    currentPlayer = player;
+    name.text = player.name;
+    position.text = player.position;
+    nomorpunggung.text = player.nomorPunggung.toString();
+    imageUrl.text = player.image;
   }
 
-// void setData(FootballModel player) {
-//     Name.text = player.name;
-//     Position.text = player.position;
-//     NomorPunggung.text = player.nomorPunggung;
-//   }
+  /// 💾 Simpan perubahan data pemain
+  void save() {
+    if (currentPlayer == null) {
+      Get.snackbar("Error", "Tidak ada data pemain yang dimuat");
+      return;
+    }
 
- void save() {
-    playerController.updatePlayer(
-      index,
-      FootballModel(
-        name: Name.text,
-        position: Position.text,
-        nomorPunggung: int.parse(NomorPunggung.text),
-        image: playerController.players[index].image,
-      ),
+    currentPlayer!
+      ..name = name.text
+      ..position = position.text
+      ..nomorPunggung = int.tryParse(nomorpunggung.text) ?? 0
+      ..image = imageUrl.text;
+
+    // ✅ Kirim kembali ke halaman sebelumnya dengan data yang diperbarui
+    Get.back(result: currentPlayer);
+
+    // ✅ Notifikasi berhasil
+    Get.snackbar(
+      "Berhasil",
+      "Data pemain berhasil diperbarui",
+      snackPosition: SnackPosition.BOTTOM,
     );
-    Get.back();
+  }
+
+  @override
+  void onClose() {
+    name.dispose();
+    position.dispose();
+    nomorpunggung.dispose();
+    imageUrl.dispose();
+    super.onClose();
   }
 }

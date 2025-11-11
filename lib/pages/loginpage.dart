@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:testflutter/controllers/logincontroller.dart';
 import 'package:testflutter/routes/routes.dart';
 import '../widgets/CustomButton.dart';
-import '../widgets/MyTextField.dart';
-import '../controllers/logincontroller.dart';
+import '../widgets/mytextfield.dart';
 
 class LoginPage extends StatelessWidget {
   LoginPage({super.key});

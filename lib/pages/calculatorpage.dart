@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../controllers/calculatorcontroller.dart';
 import '../widgets/CustomButton.dart';
-import '../widgets/MyTextField.dart';
+import '../widgets/mytextfield.dart';
 
 class CalculatorPage extends StatelessWidget {
   CalculatorPage({super.key});

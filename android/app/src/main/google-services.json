@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "805734165527",
+    "project_id": "loginnotification-4a78c",
+    "storage_bucket": "loginnotification-4a78c.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:805734165527:android:b788ebd4f0174a50a18052",
+        "android_client_info": {
+          "package_name": "com.example.loginpage2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "805734165527-f23a666jend5tkh4u2000m005bsrtv4c.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.loginpage2",
+            "certificate_hash": "14fd51b101bf3db2dd16579b8ffe104dd2c6405f"
+          }
+        },
+        {
+          "client_id": "805734165527-j9mllb2vgnglleu9qom99toe077dv5bc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAuWlBM6lU591N9NDes2WmJU64ZGLc6AGg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "805734165527-j9mllb2vgnglleu9qom99toe077dv5bc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
